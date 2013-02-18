@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Web development for the modern man</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/imtech-ict.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<header>
+    &nbsp;
+</header>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+    <section>
+        <h1>
+            <br>
+        </h1>
+        <h1>Testing</h1>
+        <h1>with&nbsp;</h1>
+        <h1>spock</h1>
+        <p>
+        <br>
+    </p>
+</section>
+<section>
+    <h2>
+    <img src="http://images4.fanpop.com/image/photos/18600000/Vulcan-home-boy-mr-spock-18636212-404-600.jpg">
+    <br>
+</h2>
+</section>
+    <section>
+        <h2>TEST TYPES</h2>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <span style="line-height: 1.2em;font-size: 36.0px;letter-spacing: -0.02em;">UNIT TESTS</span>
+            <br>
+        </div>
+        <div>INTEGRATION TESTS</div>
+        <div>FUNCTION TESTS</div>
+        <div>PERFORMANCE TESTS</div>
+    </section>
+    <section>
+        <section>
+            <h2>UNIT TESTS</h2>
+            <div>
+                <br>
+            </div>
+            <div>
+                <font color="#009900">Data Driven Testing</font>
+            </div>
+            <div>
+                <i>When testing a class that requires no</i>
+            </div>
+            <div>
+                <i>interaction with other objects</i>
+            </div>
+            <div>
+                <i>e.g. java.lang.Math</i>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <font color="#009900">Interaction Based Testing</font>
+            </div>
+            <div>
+                <i>When testing a class that requires interaction&nbsp;</i>
+            </div>
+            <div>
+                <i>with 1 or more other objects</i>
+            </div>
+            <div>
+                <i>e.g. Service to Repository</i>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <br>
+            </div>
+        </section>
+        <section>
+            <h2>Anatomy of a spock test</h2>
+
+    <br>
+    <pre>
+            <code>class MathSpec extends Specification {
+        def "maximum of two numbers"() {
+            expect:
+            // exercise math method for a few different inputs
+            Math.max(1, 3) == 3
+            Math.max(7, 4) == 7
+            Math.max(0, 0) == 0
+        }
+    }
+</code>
+        </pre>
+
+
+
+
+
+
+
+</section>
+        <section>
+            <h2>Specification</h2>
+
+Tests&nbsp;<div>extend&nbsp;<div>
+            <font color="#0033cc">spock.lang.Specification
+
+    <br>
+    </font>
+            <pre>
+                <code>class MathSpec extends Specification {
+        def "maximum of two numbers"() {
+            expect:
+            // exercise math method for a few different inputs
+            Math.max(1, 3) == 3
+            Math.max(7, 4) == 7
+            Math.max(0, 0) == 0
+        }
+    }
+</code>
+            </pre>
+
+
+
+
+
+
+
+
+</div>
+        </div>
+    </section>
+    <section>
+        <h2>Test methods</h2>def + "a string that explains enough"&nbsp;<br>
+    <pre>
+        <code>class MathSpec extends Specification {
+        def "maximum of two numbers"() {</code>
+        <code>
+            expect: "You can even put some text here. Text that makes sense!"</code>
+        <code>
+            // exercise math method for a few different inputs
+            Math.max(1, 3) == 3
+            Math.max(7, 4) == 7
+            Math.max(0, 0) == 0
+        }
+    }
+</code>
+    </pre>
+
+
+
+
+
+
+
+
+</section>
+    <section>
+        <h2>Assertions</h2>
+
+Only assertions on data?
+<br>
+Put it all in an 'expect' block!
+
+    <br>
+    <pre>
+        <code>class MathSpec extends Specification {
+        def "maximum of two numbers"() {
+            expect: "You can even put some text that makes sense in here"
+            // exercise math method for a few different inputs
+            Math.max(1, 3) == 3
+            Math.max(7, 4) == 7
+            Math.max(0, 0) == 0
+        }
+    }
+</code>
+    </pre>
+
+
+
+
+
+
+
+
+
+
+</section>
+    <section>
+        <h2>Assertions</h2>How does this work?<br>
+    <pre>
+        <code>class MathSpec extends Specification {
+        def "maximum of two numbers"() {
+            expect: "You can even put some text that makes sense in here"
+            // exercise math method for a few different inputs
+            Math.max(1, 3) == 3
+            Math.max(7, 4) == 7
+            Math.max(0, 0) == 0
+        }
+    }
+</code>
+    </pre>
+<br>
+Thanks to groovy, some code is injected. It puts assert statement in front of each line.
+
+
+
+
+
+
+
+
+
+
+</section>
+    <section>
+        <h2>Keeping it DRY</h2>
+Look at the code again. What if #&nbsp;<span style="line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">parameters changes?</span>
+        <div>
+            <pre>
+                <code>class MathSpec extends Specification {
+        def "maximum of two numbers"() {
+            expect: "You can even put some text that makes sense in here"
+            // exercise math method for a few different inputs
+            Math.max(1, 3) == 3
+            Math.max(7, 4) == 7
+            Math.max(0, 0) == 0
+        }
+    }
+</code>
+            </pre>
+            </div>
+    </section>
+        <section>
+    <pre>
+            <code>class MathSpec extends Specification {
+        @Unroll
+        def "maximum of #a and #b is #c"() {
+            expect:
+            Math.max(a, b) == c
+
+            where:
+            a | b | c
+            1 | 3 | 3
+            7 | 4 | 4
+            0 | 0 | 0
+        }
+    }
+</code>
+        </pre>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>
+            <br>
+        </h2>
+        <h2>
+            <br>
+        </h2>
+        <h2>
+            <br>
+        </h2>
+        <h2>Interaction based tests</h2>
+        <div>mocks, stubs, spies, ...<br>
+        </div>
+
+<p>
+        <br>
+    </p>
+    <p>
+    <br>
+</p>
+<p>
+<br>
+</p>
+<p>
+<br>
+</p>
+<p>
+<br>
+</p>
+
+</section>
+<section>
+    <h2>Mocking</h2>
+<div>
+    <pre>
+    <code>
+
+    </code>
+</pre>
+</div>
+</section>
+</section>
+<section>
+    <h2>Remember</h2>
+<div>
+    <br>
+</div>
+<div>
+    <p>
+</p>
+<p>
+</p>
+    <ul>
+    <li>
+        <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Tests should test only one thing at a time. <font color="#aaa">Multiple assertions are okay as long as they are all testing one feature/behavior. When a test fails, it should pinpoint the location of the problem.&nbsp;</font>
+    </span>
+</li>
+<li>
+    <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Tests should not rely on each other - Isolated. <font color="#aaa">No assumptions about order of test execution. Ensure 'clean slate' before each test by using setup/teardown appropriately</font>
+</span>
+    <br>
+</li>
+</ul>
+<br>&nbsp;<p>
+</p>
+<p>
+</p>
+</div>
+
+
+</section>
+<section>
+    <h2>
+        <a href="      http://docs.spockframework.org/en/latest/">
+            <br>
+        </a>
+    </h2>
+    <div>
+        <a href="javascript:nicTemp();">
+            <br>
+        </a>
+    </div>
+    <div>
+        <a href="javascript:nicTemp();">
+            <br>
+        </a>
+    </div>
+    <div>
+        <a href="javascript:nicTemp();">
+            <br>
+        </a>
+    </div>
+    <div>
+        <a href="javascript:nicTemp();">
+            <br>
+        </a>
+    </div>
+    <div>
+        <a href="javascript:nicTemp();">
+            <br>
+        </a>
+    </div>
+    <div>
+        <a href="javascript:nicTemp();">http://docs.spockframework.org/en/latest/</a>
+        <br>
+    </div>
+</section>
+<section>
+    <img src="http://imagery.pragprog.com/products/55/utj.jpg?1298589713">
+</section>
+</div>
+
+
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:true,
+        progress:true,
+        history:true,
+        center:true,
+
+        theme:Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition:Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
