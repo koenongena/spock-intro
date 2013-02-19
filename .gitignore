@@ -1,6 +1,7 @@
 out/
 .gradle/
 *.iml
+atlassian-ide-plugin.xml
 *.ipr
 *.iws
 .idea/

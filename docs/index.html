@@ -455,19 +455,20 @@ Subscriber subscriber = Mock()</code>
         </div>
     </section>
     <section>
-        <h2>Global vs. local interactions</h2>
+        <h2>Interactions</h2>
         <div>
 <pre>
     <code class="groovy">
 given:
-def subscriber = Mock(Subscriber)
-// global interactions
-subscriber.isAlive() >> true
+PersonRepository personRepository = Mock(PersonRepository)
+personRepository.findByInss(83021805793) >> new Person("Koen", "Ongena")
+
 when:
-publisher.send(event)
+String result = personService.getFirstName(83021805793)
+
 then:
-// local interactions
-1 * subscriber.receive(event)</code>
+result == "Koen"
+</code>
 </pre>
         </div>
     </section>
