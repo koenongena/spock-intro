@@ -162,18 +162,16 @@
             <h2>Anatomy of a spock test 2/2</h2>
             <div>
                 <pre>
-                    <code class="groovy">def "pushing an element on the stack"() {
-  given:
-  def stack = new Stack()
-  def elem = "push me"
-
-  when:
-  stack.push(elem)
-
-  then:
-  !stack.empty
-  stack.size() == 1
-  stack.peek() == elem
+                    <code class="groovy">def "test if vector still works"() {
+    given:
+    def vector = new Vector<String>()
+    def elem = "element"
+    when:
+    vector.add(elem)
+    then:
+    !vector.empty
+    vector.size() == 1
+    vector.get(0) == elem
 }</code>
                 </pre>
             </div>
@@ -355,6 +353,19 @@ Thanks to groovy, some code is injected. It puts assert statement in front of ea
 
 
 
+</section>
+    <section>
+        <h2>Exception handling</h2>
+    <pre>
+        <code>def "charAt non existing char index"() {
+    given:
+    def aString = '0123'
+    when:
+    aString.charAt(5)
+    then:
+    thrown(StringIndexOutOfBoundsException)
+}</code>
+    </pre>
 </section>
     <section>
         <h2>Keeping it DRY</h2>
