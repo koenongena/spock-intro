@@ -285,49 +285,166 @@ Look at the code again. What if #&nbsp;<span style="line-height: 1.2em; font-siz
         </pre>
     </section>
 </section>
-<section>
+<!--<section>-->
     <section>
-        <h2>
-            <br>
-        </h2>
-        <h2>
-            <br>
-        </h2>
-        <h2>
-            <br>
-        </h2>
-        <h2>Interaction based tests</h2>
-        <div>mocks, stubs, spies, ...<br>
-        </div>
+        <section>
+            <h2>
+                <br>
+            </h2>
+            <h2>
+                <br>
+            </h2>
+            <h2>
+                <br>
+            </h2>
+            <h2>Interaction based tests</h2>
+            <div>mocks, stubs, spies, ...<br>
+            </div>
 
-<p>
+    <p>
+            <br>
+        </p>
+        <p>
         <br>
     </p>
     <p>
     <br>
-</p>
-<p>
-<br>
-</p>
-<p>
-<br>
-</p>
-<p>
-<br>
-</p>
+    </p>
+    <p>
+    <br>
+    </p>
+    <p>
+    <br>
+    </p>
 
-</section>
-<section>
-    <h2>Mocking</h2>
-<div>
-    <pre>
-    <code>
+    </section>
 
-    </code>
+    <section>
+        <h2>Creating mocks</h2>
+        <div>
+<pre>
+    <code class="groovy">// "dynamic" style
+def subscriber = Mock(Subscriber)
+// "static" style
+Subscriber subscriber = Mock()</code>
 </pre>
-</div>
+        </div>
+    </section>
+    <section>
+        <h2>Global vs. local interactions</h2>
+        <div>
+<pre>
+    <code class="groovy">
+given:
+def subscriber = Mock(Subscriber)
+// global interactions
+subscriber.isAlive() >> true
+when:
+publisher.send(event)
+then:
+// local interactions
+1 * subscriber.receive(event)</code>
+</pre>
+        </div>
+    </section>
+    <section>
+        <h2>Optional vs. required interactions</h2>
+        <div>
+            <pre>
+                <code class="groovy">then:
+// optional interactions
+subscriber.isAlive() >> true
+// required interactions
+1 * subscriber.receive(event)</code>
+            </pre>
+            <h3>Optional interactions</h3>
+            <ul>
+                <li>don't have a cardinality</li>
+                <li>must have a return value</li>
+            </ul>
+            <h3>Required interactions</h3>
+            <ul>
+                <li>must have a cardinality</li>
+                <li>may have a return value</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h2>Cardinalities</h2>
+        <div>
+            <pre>
+                <code class="groovy">// exactly n times
+n * subscriber.receive(event)
+// at least n times
+(n.._) * subscriber.receive(event)
+// at most n times
+(_..n) * subscriber.receive(event)</code>
+            </pre>
+        </div>
+    </section>
+    <section>
+        <h2>Argument constraints</h2>
+        <div>
+            <pre>
+                <code class="groovy">// no arguments
+subscriber.receive()
+// any argument
+subscriber.receive(_)
+// any non-null argument
+subscriber.receive(!null)
+// any argument equal to event
+subscriber.receive(event)
+// any argument not equal to event
+subscriber.receive(!event)
+// any argument that is-a Message (null is not allowed)
+subscriber.receive(_ as Message)
+// custom constraint
+subscriber.receive( { it.priority >= 5 } )
+
+// For methods that take multiple arguments:
+// any argument
+mock.foo(_, _, _)
+// same as above
+mock.foo(*_)
+// any first arg, second arg non-null, third arg custom
+mock.foo(_, !null, { it ==~ /a*b/ })</code>
+            </pre>
+        </div>
+    </section>
+    <section>
+        <h2>return values</h2>
+        <div>
+            <pre>
+                <code class="groovy">// single return value, repeated indefinitely
+subscriber.isAlive() >> true
+// multiple return values (anything that Groovy can iterate over),
+// last one repeated indefinitely
+subscriber.isAlive() >>> [true, false, true]
+ // custom action
+subscriber.isAlive() >> { throw new TimeoutException() }
+// depending on arguments
+subscriber.isEventSupported(_) >> { args[0] instanceof ... }</code>
+            </pre>
+        </div>
+    </section>
+    <section>
+        <h2>interactions the next level</h2>
+        <div>
+            <pre>
+                <code class="groovy">// no (more) method call on any mock
+0 * _._
+// interaction ordering
+then:
+1 * subscriber.isAlive() >> true
+then:
+1 * subscriber.isEventSupported(_) >> true
+then:
+1 * subscriber.receive(event)</code>
+            </pre>
+        </div>
+    </section>
 </section>
-</section>
+<!--</section>-->
 <section>
     <h2>Remember</h2>
 <div>
