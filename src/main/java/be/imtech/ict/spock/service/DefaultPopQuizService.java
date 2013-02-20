@@ -1,5 +1,6 @@
 package be.imtech.ict.spock.service;
 
+import be.imtech.ict.spock.model.Band;
 import be.imtech.ict.spock.repository.BandRepository;
 
 /**
@@ -11,13 +12,25 @@ public class DefaultPopQuizService implements PopQuizService {
     private BandRepository bandRepository;
 
     @Override
-    public boolean isJustinBieberAPartOfColdplay() {
-        return true;
+    public boolean isInitialized() {
+        return bandRepository.containsBands();
     }
 
     @Override
-    public String getSinger(String bandName) {
-        return null;
+    public boolean isJustinBieberAPartOfColdplay() {
+        if (!isInitialized()) {
+            throw new IllegalStateException("Bands not yet initialized");
+        }
+        Band coldplay = bandRepository.getBand("coldplay");
+        return coldplay.getMembers().contains("Justin Bieder");
+    }
+
+    @Override
+    public String getLeadSingerName(String bandName) {
+        if (!isInitialized()) {
+            throw new IllegalStateException("Bands not yet initialized");
+        }
+        return bandRepository.getBand(bandName).getLeadSinger().getName();
     }
 
     public void setBandRepository(BandRepository bandRepository) {

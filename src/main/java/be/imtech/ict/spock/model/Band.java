@@ -10,12 +10,16 @@ import java.util.*;
 public class Band {
 
     private Collection<String> members;
-    private final Singer singer;
+    private final Singer leadSinger;
 
-    public Band(Singer singer, List<String> additionalMembers) {
+    public Band(Singer leadSinger, List<String> additionalMembers) {
         this.members = new HashSet<String>(additionalMembers);
-        this.singer = singer;
-        this.members.add(singer.getName());
+        this.leadSinger = leadSinger;
+        this.members.add(leadSinger.getName());
+    }
+
+    public Singer getLeadSinger() {
+        return leadSinger;
     }
 
     public Collection<String> getMembers() {

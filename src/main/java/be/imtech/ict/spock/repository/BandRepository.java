@@ -9,5 +9,7 @@ import be.imtech.ict.spock.model.Band;
  */
 public interface BandRepository {
 
+    boolean containsBands();
+
     Band getBand(String name);
 }

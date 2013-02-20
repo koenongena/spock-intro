@@ -7,19 +7,19 @@ import spock.lang.Specification;
  * Date: 18/02/13
  * Time: 22:21
  */
-public class PopQuizServiceTest extends Specification {
+public class DefaultPopQuizServiceTest extends Specification {
 
-    PopQuizService testing
+    PopQuizService service
 
     def setup() {
-        testing = null //implement
+        service = null //implement
     }
 
     def "Justin Bieber is NOT a part of Coldplay"() {
         //test isJustinBieberAPartOfColdplay
     }
 
-    def "the singer of a band is retrieved correctly"() throws Exception {
+    def "the lead singer of a band is retrieved correctly"() {
         //test getSinger
     }
 }

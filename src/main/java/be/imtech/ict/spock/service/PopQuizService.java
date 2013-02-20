@@ -7,7 +7,9 @@ package be.imtech.ict.spock.service;
  */
 public interface PopQuizService {
 
-    public boolean isJustinBieberAPartOfColdplay();
+    boolean isInitialized();
 
-    public String getSinger(String bandName);
+    boolean isJustinBieberAPartOfColdplay();
+
+    String getLeadSingerName(String bandName);
 }
