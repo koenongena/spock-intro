@@ -19,6 +19,10 @@ public class DefaultPopQuizServiceTest extends Specification {
         //test isJustinBieberAPartOfColdplay
     }
 
+    def "Justin Bieber is a part of Coldplay"() {
+        //test isJustinBieberAPartOfColdplay
+    }
+
     def "the lead singer of a band is retrieved correctly"() {
         //test getSinger
     }

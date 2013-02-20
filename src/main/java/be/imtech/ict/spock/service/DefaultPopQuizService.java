@@ -18,19 +18,27 @@ public class DefaultPopQuizService implements PopQuizService {
 
     @Override
     public boolean isJustinBieberAPartOfColdplay() {
-        if (!isInitialized()) {
-            throw new IllegalStateException("Bands not yet initialized");
-        }
-        Band coldplay = bandRepository.getBand("coldplay");
+        Band coldplay = getBand("coldplay");
         return coldplay.getMembers().contains("Justin Bieder");
     }
 
     @Override
     public String getLeadSingerName(String bandName) {
+        return getBand(bandName).getLeadSinger().getName();
+    }
+
+    private Band getBand(String bandName) {
         if (!isInitialized()) {
             throw new IllegalStateException("Bands not yet initialized");
         }
-        return bandRepository.getBand(bandName).getLeadSinger().getName();
+
+        Band band = bandRepository.getBand(bandName);
+
+        if (band == null) {
+            throw new IllegalStateException(String.format("No band found with name %s", bandName));
+        }
+
+        return band;
     }
 
     public void setBandRepository(BandRepository bandRepository) {
