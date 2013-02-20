@@ -22,7 +22,13 @@ class StackTest extends Specification{
         then:
         underTest.size() == 1
         underTest.pop() == "An element"
+    }
 
+    def "popping from an empty stack throws an exception"(){
+        when:
+        underTest.pop()
 
+        then:
+        thrown(EmptyStackException)
     }
 }
