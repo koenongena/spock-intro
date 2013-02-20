@@ -1,5 +1,6 @@
-package be.imtech.ict.spock.service;
+package be.imtech.ict.spock.service
 
+import be.imtech.ict.spock.repository.BandRepository;
 import spock.lang.Specification
 import spock.lang.Ignore
 import spock.lang.Issue;
@@ -11,10 +12,22 @@ import spock.lang.Issue;
  */
 public class DefaultPopQuizServiceTest extends Specification {
 
-    PopQuizService service
+    DefaultPopQuizService service
+
+    BandRepository mockBandRepository
 
     def setup() {
-        service = null //implement
+        service = new DefaultPopQuizService()
+        mockBandRepository = Mock(BandRepository)
+        service.bandRepository = mockBandRepository
+    }
+
+    def "is service initialized"(){
+        given:
+        mockBandRepository.containsBands() >> true
+
+        expect:
+        service.initialized
     }
 
     @Issue("POPQ-1")
