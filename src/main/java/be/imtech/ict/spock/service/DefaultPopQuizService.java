@@ -21,7 +21,7 @@ public class DefaultPopQuizService implements PopQuizService {
     @Override
     public boolean isJustinBieberAPartOfColdplay() {
         Band coldplay = getBand("coldplay");
-        return coldplay.getMembers().contains("Justin Bieder");
+        return coldplay.getMembers().contains("Justin Bieber");
     }
 
     @Override
