@@ -34,11 +34,17 @@ public class DefaultPopQuizServiceTest extends Specification {
     @Ignore
     def "are all these singers lead singers of the band"() {
         given:
+        Map<String, String> singers = [
+                'Chris Martin': 'Coldplay',
+                'Bono': 'U2',
+                'Freddie Mercury': 'Queen'
+        ]
 
         when:
-        service.areAllTheseSingersLeadSingerOfTheBand()
-        then:
-        1 == 2
+        def result = service.areAllTheseSingersLeadSingerOfTheBand(singers)
+
+        then: "Yes they are all singers of the specified bands"
+        result
     }
 
 }
