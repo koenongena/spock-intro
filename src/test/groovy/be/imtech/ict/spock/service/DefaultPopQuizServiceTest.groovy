@@ -24,6 +24,10 @@ public class DefaultPopQuizServiceTest extends Specification {
         service.bandRepository = mockBandRepository
 
         mockBandRepository.containsBands() >> true
+        mockBandRepository.getBand("coldplay") >> new Band(new Singer("Chris Martin"), new ArrayList<String>());
+        mockBandRepository.getBand("Coldplay") >> new Band(new Singer("Chris Martin"), new ArrayList<String>());
+        mockBandRepository.getBand("U2") >> new Band(new Singer("Bono"), new ArrayList<String>());
+        mockBandRepository.getBand("Queen") >> new Band(new Singer("Freddie Mercury"), new ArrayList<String>());
     }
 
     def "is service initialized"(){
@@ -74,14 +78,19 @@ public class DefaultPopQuizServiceTest extends Specification {
         thrown(IllegalStateException)
     }
 
-    @Ignore
     def "are all these singers lead singers of the band"() {
         given:
+        Map<String, String> singers = [
+                'Chris Martin': 'Coldplay',
+                'Bono': 'U2',
+                'Freddie Mercury': 'Queen'
+        ]
 
         when:
-        service.areAllTheseSingersLeadSingerOfTheBand()
-        then:
-        1 == 2
+        def result = service.areAllTheseSingersLeadSingerOfTheBand(singers)
+
+        then: "Yes they are all singers of the specified bands"
+        result
     }
 
 }
